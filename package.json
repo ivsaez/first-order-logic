@@ -1,0 +1,16 @@
+{
+  "name": "first-order-logic",
+  "version": "1.0.0",
+  "description": "First order logic library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "first",
+    "order",
+    "logic"
+  ],
+  "author": "Ivan Saez Zamora",
+  "license": "MIT"
+}
