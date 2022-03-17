@@ -1,0 +1,1 @@
+export const TextExpression: RegExp = new RegExp("^[a-zA-Z]+$");
