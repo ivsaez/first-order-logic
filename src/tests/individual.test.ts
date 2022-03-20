@@ -33,4 +33,9 @@ describe("Individual should", () => {
     expect(individual.equals(undefined)).toBe(false);
     expect(individual.equals(null)).toBe(false);
   });
+
+  it("show correct toString", () => {
+    let individual = new Individual("Individual");
+    expect(individual.toString()).toBe("Individual");
+  });
 });

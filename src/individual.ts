@@ -4,14 +4,14 @@ export class Individual{
     private _name: string;
 
     constructor(name: string){
-        if(name === undefined || name === null)
+        if(name == null)
             throw new Error("Name cannot be null.");
         
         if(name === "x" || name === "y")
             throw new Error("x and y are reserved names.");
         
         if(!TextExpression.test(name))
-            throw new Error("Individual name only accept letters and capital letters.");
+            throw new Error("Individual name only accepts letters and capital letters.");
 
         this._name = name;
     }
@@ -23,5 +23,9 @@ export class Individual{
     equals(obj: Individual) : boolean { 
         if(obj == null) return false;
         return this._name === obj._name;
+    }
+
+    toString(): string{
+        return this._name;
     }
 }
