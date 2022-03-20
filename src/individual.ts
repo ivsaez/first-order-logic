@@ -1,6 +1,7 @@
 import { TextExpression } from "./expressions";
+import { IStringable } from "./interfaces";
 
-export class Individual{
+export class Individual implements IStringable{
     private _name: string;
 
     constructor(name: string){

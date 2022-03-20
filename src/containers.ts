@@ -1,12 +1,17 @@
 import { Individual } from "./individual";
+import { Function } from "./function";
+import { IStringable } from "./interfaces";
 
-export class Population{
-    private _items: Map<string, Individual>;
+export abstract class Container<T extends IStringable>{
+    private _items: Map<string, T>;
 
-    constructor(items: Individual[] = []){
-        this._items = new Map<string, Individual>();
-        for(let item of items){
-            this._items.set(item.toString(), item);
+    constructor(items: T[] = []){
+        this._items = new Map<string, T>();
+
+        if(items != null){
+            for(let item of items){
+                this._items.set(item.toString(), item);
+            }
         }
     }
 
@@ -18,33 +23,36 @@ export class Population{
         return result;
     }
 
-    add(item: Individual): void{
+    add(item: T): void{
         this.validateItem(item);
         
         this._items.set(item.toString(), item);
     }
 
-    remove(item: Individual): boolean{
+    remove(item: T): boolean{
         this.validateItem(item);
         
         return this._items.delete(item.toString());
     }
 
-    exists(item: Individual): boolean{
+    exists(item: T): boolean{
         this.validateItem(item);
         
         return this._items.has(item.toString());
     }
 
-    get(itemStringRepresentation: string): Individual{
+    get(itemStringRepresentation: string): T{
         if(itemStringRepresentation == null || itemStringRepresentation === "")
             throw new Error("Input cannot be null or empty");
         
         return this._items.get(itemStringRepresentation);
     }
 
-    private validateItem(item: Individual): void{
+    private validateItem(item: T): void{
         if(item == null)
             throw new Error("Input cannot be null.");
     }
 }
+
+export class Population extends Container<Individual>{}
+export class Functionality extends Container<Function>{}

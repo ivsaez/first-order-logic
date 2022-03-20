@@ -1,6 +1,7 @@
 import { TextExpression, VariableExpression, FunctionExpression } from "./expressions";
+import { IStringable } from "./interfaces";
 
-export class Function{
+export class Function implements IStringable{
     private _name: string;
     private _cardinality: Cardinality;
     private _firstVariable: string;
