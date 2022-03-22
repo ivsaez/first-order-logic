@@ -1,4 +1,5 @@
-import { Container } from "../containers";
+import { Sentence } from "../sentence";
+import { Container, TruthTable } from "../containers";
 import { IStringable } from "../interfaces";
 
 class Sample implements IStringable {
@@ -89,5 +90,50 @@ describe("Container should", () => {
     expect(() => container.exists(null)).toThrowError();
     expect(() => container.remove(null)).toThrowError();
     expect(() => container.get(null)).toThrowError();
+  });
+});
+
+describe("TruthTable should", () => {
+  it("create an empty table", () => {
+    let table = TruthTable.empty;
+    expect(table.elements.length).toBe(0);
+  });
+
+  it("join with another table", () => {
+    let table = new TruthTable([
+      Sentence.build("A", "First", "Second"),
+    ]);
+
+    let anotherTable = new TruthTable([
+      Sentence.build("B", "Third", "Fourth")
+    ]);
+
+    table.join(anotherTable);
+
+    expect(table.elements.length).toBe(2);
+    expect(table.exists(Sentence.build("A", "First", "Second"))).toBe(true);
+    expect(table.exists(Sentence.build("B", "Third", "Fourth"))).toBe(true);
+  });
+
+  it("add new elements fluently", () => {
+    let table = TruthTable.empty
+      .with(Sentence.build("A", "First", "Second"))
+      .with(Sentence.build("B", "Third", "Fourth"));
+
+      expect(table.elements.length).toBe(2);
+      expect(table.exists(Sentence.build("A", "First", "Second"))).toBe(true);
+      expect(table.exists(Sentence.build("B", "Third", "Fourth"))).toBe(true);
+  });
+
+  it("copy itself", () => {
+    let table = TruthTable.empty
+      .with(Sentence.build("A", "First", "Second"))
+      .with(Sentence.build("B", "Third", "Fourth"));
+    
+    let anotherTable = table.copy();
+
+    expect(anotherTable.elements.length).toBe(2);
+    expect(anotherTable.exists(Sentence.build("A", "First", "Second"))).toBe(true);
+    expect(anotherTable.exists(Sentence.build("B", "Third", "Fourth"))).toBe(true);
   });
 });

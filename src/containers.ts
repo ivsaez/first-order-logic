@@ -1,5 +1,6 @@
 import { Individual } from "./individual";
 import { Function } from "./function";
+import { Sentence } from "./sentence";
 import { IStringable } from "./interfaces";
 
 export abstract class Container<T extends IStringable>{
@@ -15,7 +16,7 @@ export abstract class Container<T extends IStringable>{
         }
     }
 
-    get elements(){
+    get elements(): T[]{
         let result = [];
         for(let item of this._items.values())
             result.push(item);
@@ -56,3 +57,41 @@ export abstract class Container<T extends IStringable>{
 
 export class Population extends Container<Individual>{}
 export class Functionality extends Container<Function>{}
+
+export class TruthTable extends Container<Sentence>{
+    static get empty(): TruthTable{
+        return new TruthTable();
+    }
+
+    join(truthTable: TruthTable): boolean
+    {
+        let anyAdded: boolean = false;
+        for (let item of truthTable.elements)
+        {
+            if (!this.exists(item))
+            {
+                anyAdded = true;
+                this.add(item);
+            }
+        }
+
+        return anyAdded;
+    }
+
+    with(sentence: Sentence): TruthTable
+    {
+        this.add(sentence);
+        return this;
+    }
+
+    copy(): TruthTable
+    {
+        let copy = new TruthTable();
+        for (var item of this.elements)
+        {
+            copy.add(item);
+        }
+
+        return copy;
+    }
+}
