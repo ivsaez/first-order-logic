@@ -1,7 +1,7 @@
 import { Individual } from "../individual";
 import { Cardinality, Function } from "../function";
 import { Sentence } from "../sentence";
-import { Functionality, Population } from "../containers";
+import { Functionality, Population, TruthTable } from "../containers";
 
 describe("Sentence should", () => {
   it("create a new sentence", () => {
@@ -215,5 +215,26 @@ describe("Sentence should", () => {
     expect(Sentence.validate("Sentence[A ,B]")).toBe(false);
     expect(Sentence.validate("Sentence[A,B ]")).toBe(false);
     expect(Sentence.validate("Sentence[A,B]")).toBe(true);
+  });
+
+  it("be evaluable", () => {
+    let sentence = new Sentence(
+        new Function("A", Cardinality.Two),
+        new Individual("First"),
+        new Individual("Second")
+    );
+
+    let anotherSentence = new Sentence(
+        new Function("B", Cardinality.Two),
+        new Individual("First"),
+        new Individual("Second")
+    );
+    
+    let table = new TruthTable([
+        Sentence.build("A", "First", "Second")
+    ]);
+
+    expect(sentence.evaluate(table)).toBe(true);
+    expect(anotherSentence.evaluate(table)).toBe(false);
   });
 });

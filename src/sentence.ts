@@ -1,10 +1,10 @@
-import { Functionality, Population } from "./containers";
+import { Functionality, Population, TruthTable } from "./containers";
 import { Cardinality, Function } from "./function";
 import { Individual } from "./individual";
-import { IStringable } from "./interfaces";
+import { IStringable, IEvaluable } from "./interfaces";
 import { SentenceExpression } from "./expressions";
 
-export class Sentence implements IStringable{
+export class Sentence implements IStringable, IEvaluable{
     private _function: Function;
     private _first: Individual;
     private _second: Individual;
@@ -91,6 +91,10 @@ export class Sentence implements IStringable{
                     || (this._first.equals(obj._second) && this._second.equals(obj._first)));
 
         return true;
+    }
+
+    evaluate(table: TruthTable): boolean{
+        return table.exists(this);
     }
 
     static validate(input: string): boolean
