@@ -1,7 +1,9 @@
 import { TextExpression, VariableExpression, FunctionExpression } from "./expressions";
-import { IStringable } from "./interfaces";
+import { IFormulable, IStringable, IEvaluable } from "./interfaces";
+import { Mappings } from "./mappings";
+import { Sentence } from "./sentence";
 
-export class Function implements IStringable{
+export class Function implements IStringable, IFormulable{
     private _name: string;
     private _cardinality: Cardinality;
     private _firstVariable: string;
@@ -84,6 +86,33 @@ export class Function implements IStringable{
 
             default:
                 return this._name;
+        }
+    }
+
+    formulate(mappings: Mappings): IEvaluable{
+        if (this._cardinality === Cardinality.None)
+        {
+            return new Sentence(this);
+        }
+        else if (this._cardinality === Cardinality.One)
+        {
+            if (!mappings.hasVariable(this._firstVariable)) 
+                throw new Error(`${this._firstVariable} variable is missing`);
+
+            return new Sentence(this, mappings.mapping(this._firstVariable));
+        }
+        else
+        {
+            if (!mappings.hasVariable(this._firstVariable)) 
+                throw new Error(`${this._firstVariable} variable is missing`);
+            
+            if (!mappings.hasVariable(this._secondVariable)) 
+                throw new Error(`${this._secondVariable} variable is missing`);
+
+            return new Sentence(
+                this, 
+                mappings.mapping(this._firstVariable), 
+                mappings.mapping(this._secondVariable));
         }
     }
 

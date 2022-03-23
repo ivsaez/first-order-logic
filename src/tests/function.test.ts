@@ -1,4 +1,6 @@
+import { Individual, Sentence } from "..";
 import { Cardinality, Function } from "../function";
+import { Mappings } from "../mappings";
 
 describe("Function should", () => {
   it("throw an exception if null name", () => {
@@ -184,5 +186,39 @@ describe("Function should", () => {
     expect(Function.validate("~Any")).toBe(true);
     expect(Function.validate("~Any[a]")).toBe(true);
     expect(Function.validate("~Any[a,b]")).toBe(true);
+  });
+
+  it("formulate none cardinality to sentence", () => {
+    let none = new Function("A", Cardinality.None);
+    let formulated = none.formulate(new Mappings()) as Sentence;
+    expect(formulated.equals(Sentence.build("A"))).toBe(true);
+  });
+
+  it("formulate one cardinality to sentence", () => {
+    let one = new Function("A", Cardinality.One, "x");
+    let mappings = new Mappings();
+    mappings.addVariable("x");
+    mappings.map("x", new Individual("First"));
+    let formulated = one.formulate(mappings) as Sentence;
+    expect(formulated.equals(Sentence.build("A", "First"))).toBe(true);
+  });
+
+  it("formulate two cardinality to sentence", () => {
+    let two = new Function("A", Cardinality.Two, "x", "y");
+    let mappings = new Mappings();
+    mappings.addVariables([ "x", "y"] );
+    mappings.map("x", new Individual("First"));
+    mappings.map("y", new Individual("Second"));
+    let formulated = two.formulate(mappings) as Sentence;
+    expect(formulated.equals(Sentence.build("A", "First", "Second"))).toBe(true);
+  });
+
+  it("throw exception when formulating with invalid mappings", () => {
+    let two = new Function("A", Cardinality.Two, "x", "y");
+    let mappings = new Mappings();
+    mappings.addVariables([ "c", "d"] );
+    mappings.map("c", new Individual("First"));
+    mappings.map("d", new Individual("Second"));
+    expect(() => two.formulate(mappings)).toThrowError();
   });
 });
