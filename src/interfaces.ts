@@ -14,3 +14,6 @@ export interface IFormulable{
 
     formulate(mappings: Mappings): IEvaluable;
 }
+
+export interface IEvaluableNode extends IEvaluable, IStringable{}
+export interface IFormulableNode extends IFormulable, IStringable{}
