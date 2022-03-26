@@ -1,6 +1,7 @@
 import { Individual } from "./individual";
 import { Function } from "./function";
 import { Sentence } from "./sentence";
+import { Axiom } from "./axiom";
 import { IStringable } from "./interfaces";
 
 export abstract class Container<T extends IStringable>{
@@ -57,6 +58,7 @@ export abstract class Container<T extends IStringable>{
 
 export class Population extends Container<Individual>{}
 export class Functionality extends Container<Function>{}
+export class Rules extends Container<Axiom>{}
 
 export class TruthTable extends Container<Sentence>{
     static get empty(): TruthTable{

@@ -4,7 +4,7 @@ export { Function } from "./function";
 export { Sentence } from "./sentence";
 export { Mappings } from "./mappings";
 export { Axiom } from "./axiom";
-export { Population, Functionality, TruthTable } from "./containers";
+export { Population, Functionality, TruthTable, Rules } from "./containers";
 export { 
     EvaluableNegateOperation,
     EvaluableAndOperation,
