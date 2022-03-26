@@ -34,7 +34,7 @@ describe("Function should", () => {
   });
 
   it("throw equal variables", () => {
-    expect(() => new Function("F", Cardinality.None, "x", "x")).toThrowError();
+    expect(() => new Function("F", Cardinality.Two, "x", "x")).toThrowError();
   });
 
   it("create a new function", () => {
@@ -42,8 +42,8 @@ describe("Function should", () => {
 
     expect(func.name).toBe("F");
     expect(func.cardinality).toBe(Cardinality.None);
-    expect(func.firstVariable).toBe("x");
-    expect(func.secondVariable).toBe("y");
+    expect(func.firstVariable).toBe(null);
+    expect(func.secondVariable).toBe(null);
     expect(func.isReflexive).toBe(false);
     expect(func.variables.length).toBe(0);
   });
@@ -67,7 +67,7 @@ describe("Function should", () => {
     expect(func.name).toBe("F");
     expect(func.cardinality).toBe(Cardinality.One);
     expect(func.firstVariable).toBe("a");
-    expect(func.secondVariable).toBe("b");
+    expect(func.secondVariable).toBe(null);
     expect(func.isReflexive).toBe(false);
     expect(func.variables.length).toBe(1);
     expect(func.variables[0]).toBe("a");
@@ -126,8 +126,8 @@ describe("Function should", () => {
 
     expect(func.name).toBe("F");
     expect(func.cardinality).toBe(Cardinality.None);
-    expect(func.firstVariable).toBe("x");
-    expect(func.secondVariable).toBe("y");
+    expect(func.firstVariable).toBe(null);
+    expect(func.secondVariable).toBe(null);
     expect(func.isReflexive).toBe(false);
     expect(func.variables.length).toBe(0);
   });
@@ -138,7 +138,7 @@ describe("Function should", () => {
     expect(func.name).toBe("F");
     expect(func.cardinality).toBe(Cardinality.One);
     expect(func.firstVariable).toBe("x");
-    expect(func.secondVariable).toBe("y");
+    expect(func.secondVariable).toBe(null);
     expect(func.isReflexive).toBe(false);
     expect(func.variables.length).toBe(1);
     expect(func.variables[0]).toBe("x");

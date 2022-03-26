@@ -1,9 +1,9 @@
 import { TextExpression, VariableExpression, FunctionExpression } from "./expressions";
-import { IFormulable, IStringable, IEvaluable } from "./interfaces";
+import { IEvaluable, IFormulableNode } from "./interfaces";
 import { Mappings } from "./mappings";
 import { Sentence } from "./sentence";
 
-export class Function implements IStringable, IFormulable{
+export class Function implements IFormulableNode {
     private _name: string;
     private _cardinality: Cardinality;
     private _firstVariable: string;
@@ -21,13 +21,17 @@ export class Function implements IStringable, IFormulable{
         this.validateVariable(firstVariable);
         this.validateVariable(secondVariable);
 
-        if (firstVariable === secondVariable) 
+        if (cardinality === Cardinality.Two && firstVariable === secondVariable) 
             throw new Error("Variables must be different");
 
         this._name = name;
         this._cardinality = cardinality;
-        this._firstVariable = firstVariable;
-        this._secondVariable = secondVariable;
+        this._firstVariable = (cardinality === Cardinality.One || cardinality === Cardinality.Two) 
+            ? firstVariable 
+            : null;
+        this._secondVariable = (cardinality === Cardinality.Two) 
+            ? secondVariable 
+            : null;
 
         this.setReflexiveBasedOnCardinality(cardinality, isReflexive);
     }

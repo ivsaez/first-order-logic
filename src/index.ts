@@ -3,6 +3,7 @@ export { Individual } from "./individual";
 export { Function } from "./function";
 export { Sentence } from "./sentence";
 export { Mappings } from "./mappings";
+export { Axiom } from "./axiom";
 export { Population, Functionality, TruthTable } from "./containers";
 export { 
     EvaluableNegateOperation,
