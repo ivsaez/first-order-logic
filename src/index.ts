@@ -18,3 +18,4 @@ export {
     FormulableEquivalenceOperation
 } from "./operations";
 export { universalQuantifier, existencialQuantifier } from "./quantifiers";
+export { modusPonens, ModusPonensResult } from "./reasoners";
