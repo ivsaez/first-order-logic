@@ -1,6 +1,5 @@
-import { FormulableAndOperation } from "./operations";
+import { FormulableAndOperation, FormulableImplicationOperation } from "./operations";
 import { IFormulable, IStringable, IFormulableNode } from "./interfaces";
-import { FormulableImplicationOperation } from ".";
 
 export class Axiom implements IStringable{
     private _premises: IFormulableNode[];

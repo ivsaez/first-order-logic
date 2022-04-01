@@ -4,7 +4,7 @@ import { Mappings } from "./mappings";
 import { Rules, Population, TruthTable } from "./containers";
 import { IFormulable } from "./interfaces";
 import { EvaluableNegateOperation } from "./operations";
-import { Individual } from ".";
+import { Individual } from "./individual";
 
 export function modusPonens(
     rules: Rules, 

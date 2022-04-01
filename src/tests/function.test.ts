@@ -1,4 +1,5 @@
-import { Individual, Sentence } from "..";
+import { Individual } from "../individual";
+import { Sentence } from "../sentence";
 import { Cardinality, Function } from "../function";
 import { Mappings } from "../mappings";
 

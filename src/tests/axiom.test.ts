@@ -1,4 +1,4 @@
-import { FormulableAndOperation, FormulableImplicationOperation } from "..";
+import { FormulableAndOperation, FormulableImplicationOperation } from "../operations";
 import { Axiom } from "../axiom";
 import { Cardinality, Function } from "../function";
 

@@ -1,4 +1,5 @@
-import { FormulableAndOperation, Sentence } from "..";
+import { FormulableAndOperation } from "../operations";
+import { Sentence } from "../sentence";
 import { Population, TruthTable } from "../containers";
 import { Cardinality, Function } from "../function";
 import { Individual } from "../individual";

@@ -215,8 +215,6 @@ describe("Modus ponens should", () => {
 
         var result = modusPonens(rules, population, table, [ new Sentence(premise2, goku) ]);
 
-        console.log(JSON.stringify(result.removed));
-
         expect(result.count).toBe(2);
         expect(result.added[0].equals(new Sentence(premise2, goku))).toBe(true);
         expect(result.removed[0].equals(new Sentence(premise1, goku))).toBe(true);
