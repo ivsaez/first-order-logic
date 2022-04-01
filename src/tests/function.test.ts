@@ -1,6 +1,4 @@
-import { Individual } from "../individual";
-import { Sentence } from "../sentence";
-import { Cardinality, Function } from "../function";
+import { Individual, Function, Sentence, Cardinality } from "../basis";
 import { Mappings } from "../mappings";
 
 describe("Function should", () => {

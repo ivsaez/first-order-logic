@@ -1,6 +1,4 @@
-import { Individual } from "./individual";
-import { Function } from "./function";
-import { Sentence } from "./sentence";
+import { Individual, Function, Sentence } from "./basis";
 import { Axiom } from "./axiom";
 import { IStringable } from "./interfaces";
 

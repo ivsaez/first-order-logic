@@ -1,6 +1,4 @@
-import { Individual } from "../individual";
-import { Cardinality, Function } from "../function";
-import { Sentence } from "../sentence";
+import { Individual, Function, Cardinality, Sentence } from "../basis";
 import { Functionality, Population, TruthTable } from "../containers";
 
 describe("Sentence should", () => {

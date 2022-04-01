@@ -1,4 +1,4 @@
-import { Individual } from "./individual";
+import { Individual } from "./basis";
 
 export class Mappings{
     private _mappings: Map<string, Individual>;

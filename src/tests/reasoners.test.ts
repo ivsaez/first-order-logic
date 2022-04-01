@@ -1,9 +1,7 @@
 import { Axiom } from "../axiom";
-import { Individual } from "../individual";
-import { Sentence } from "../sentence";
-import { Function, Cardinality } from "../function";
+import { Individual, Sentence, Function, Cardinality } from "../basis";
 import { Rules, Population, TruthTable } from "../containers";
-import { modusPonens, ModusPonensResult } from "../reasoners";
+import { modusPonens } from "../reasoners";
 import { FormulableNegateOperation } from "../operations";
 
 let rules: Rules;

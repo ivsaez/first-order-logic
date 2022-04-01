@@ -1,4 +1,4 @@
-import { Individual } from "../individual";
+import { Individual } from "../basis";
 
 describe("Individual should", () => {
   it("create an individual", () => {

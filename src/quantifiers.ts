@@ -1,7 +1,7 @@
 import { IFormulable } from "./interfaces";
 import { Population, TruthTable } from "./containers";
 import { Mappings } from "./mappings";
-import { Individual } from "./individual";
+import { Individual } from "./basis";
 
 export function existencialQuantifier(
     premise: IFormulable, 
