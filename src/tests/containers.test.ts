@@ -1,4 +1,4 @@
-import { Sentence } from "../sentence";
+import { Sentence } from "../basis";
 import { Container, TruthTable } from "../containers";
 import { IStringable } from "../interfaces";
 

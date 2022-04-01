@@ -1,7 +1,5 @@
 export { IEvaluable } from "./interfaces";
-export { Individual } from "./individual";
-export { Function } from "./function";
-export { Sentence } from "./sentence";
+export { Individual, Function, Sentence, Cardinality } from "./basis";
 export { Mappings } from "./mappings";
 export { Axiom } from "./axiom";
 export { Population, Functionality, TruthTable, Rules } from "./containers";

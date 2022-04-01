@@ -1,8 +1,6 @@
 import { FormulableAndOperation } from "../operations";
-import { Sentence } from "../sentence";
+import { Individual, Function, Sentence, Cardinality } from "../basis";
 import { Population, TruthTable } from "../containers";
-import { Cardinality, Function } from "../function";
-import { Individual } from "../individual";
 import { universalQuantifier, existencialQuantifier } from "../quantifiers";
 
 let funcA: Function;

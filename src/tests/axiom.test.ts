@@ -1,6 +1,6 @@
 import { FormulableAndOperation, FormulableImplicationOperation } from "../operations";
 import { Axiom } from "../axiom";
-import { Cardinality, Function } from "../function";
+import { Cardinality, Function } from "../basis";
 
 let funcA: Function;
 let funcB: Function;

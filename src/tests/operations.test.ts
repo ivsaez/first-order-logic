@@ -1,5 +1,4 @@
-import { Sentence } from "../sentence";
-import { Cardinality, Function } from "../function";
+import { Sentence, Cardinality, Function } from "../basis";
 import { 
     EvaluableNegateOperation,
     EvaluableAndOperation,

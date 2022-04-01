@@ -1,10 +1,9 @@
-import { Sentence } from "./sentence";
+import { Individual, Sentence } from "./basis";
 import { Axiom } from "./axiom";
 import { Mappings } from "./mappings";
 import { Rules, Population, TruthTable } from "./containers";
 import { IFormulable } from "./interfaces";
 import { EvaluableNegateOperation } from "./operations";
-import { Individual } from "./individual";
 
 export function modusPonens(
     rules: Rules, 

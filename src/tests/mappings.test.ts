@@ -1,4 +1,4 @@
-import { Individual } from "../individual";
+import { Individual } from "../basis";
 import { Mappings } from "../mappings";
 
 let mappings: Mappings = null;

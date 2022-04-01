@@ -1,5 +1,5 @@
 import { TruthTable } from "./containers";
-import { IEvaluable, IEvaluableNode, IFormulable, IFormulableNode, IStringable } from "./interfaces";
+import { IEvaluable, IEvaluableNode, IFormulableNode, IStringable } from "./interfaces";
 import { Mappings } from "./mappings";
 
 type UnaryOperation = (a: boolean) => boolean;
