@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "jest",
+    "prebuild": "npm run test",
     "build": "microbundle",
     "prepublish": "npm run build",
     "tsc": "tsc",
