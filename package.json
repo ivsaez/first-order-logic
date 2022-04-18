@@ -1,6 +1,6 @@
 {
   "name": "first-order-logic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "First order logic library.",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
