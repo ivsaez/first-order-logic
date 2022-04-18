@@ -17,3 +17,4 @@ export {
 } from "./operations";
 export { universalQuantifier, existencialQuantifier } from "./quantifiers";
 export { modusPonens, ModusPonensResult } from "./reasoners";
+export { LogicAgent } from "./aggregation";
