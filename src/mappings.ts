@@ -1,19 +1,24 @@
 import { Individual } from "./basis";
 
+interface IMapping{
+    Variable: string;
+    Individual: Individual;
+}
+
 export class Mappings{
-    private _mappings: Map<string, Individual>;
+    private _mappings: IMapping[];
 
     constructor(){
-        this._mappings = new Map<string, Individual>();
+        this._mappings = [];
     }
 
     get variables(): string[]{
-        return Array.from(this._mappings.keys());
+        return this._mappings.map(m => m.Variable);
     }
 
     get hasAllVariablesMapped(): boolean{
-        for(let value of Array.from(this._mappings.values())){
-            if(value == null)
+        for(let value of this._mappings){
+            if(value.Individual === null)
                 return false; 
         }
 
@@ -24,10 +29,13 @@ export class Mappings{
     {
         this.checkVariable(variable);
 
-        if(this._mappings.has(variable)) 
+        if(this.existVariable(variable)) 
             throw new Error("Variable already exists");
 
-        this._mappings.set(variable, null);
+        this._mappings.push({
+            Variable: variable,
+            Individual: null
+        });
     }
 
     addVariables(variables: string[])
@@ -48,7 +56,7 @@ export class Mappings{
 
         this.checkIndividual(individual);
 
-        this._mappings.set(variable, individual);
+        this.setIndividual(variable, individual);
     }
 
     mapNext(individual: Individual): void
@@ -56,11 +64,11 @@ export class Mappings{
         this.checkIndividual(individual);
         
         let included: boolean = false;
-        for (let item of this.variables)
+        for (let item of this._mappings)
         {
-            if (this._mappings.get(item) == null)
+            if (item.Individual === null)
             {
-                this._mappings.set(item, individual);
+                item.Individual = individual;
                 included = true;
                 break;
             }
@@ -74,7 +82,7 @@ export class Mappings{
     {
         this.checkVariable(variable);
 
-        return this._mappings.has(variable);
+        return this.existVariable(variable);
     }
 
     hasMapping(variable: string): boolean
@@ -82,7 +90,7 @@ export class Mappings{
         this.checkVariable(variable);
         this.checkExistingVariable(variable);
 
-        return this._mappings.get(variable) !== null;
+        return this.obtainMapping(variable) !== null;
     }
 
     hasIndividual(individual: Individual): boolean
@@ -90,7 +98,7 @@ export class Mappings{
         this.checkIndividual(individual);
 
         for(let value of this._mappings){
-            if(individual.equals(value[1]))
+            if(individual.equals(value.Individual))
                 return true;
         }
         
@@ -102,7 +110,7 @@ export class Mappings{
         this.checkVariable(variable);
         this.checkExistingVariable(variable);
 
-        return this._mappings.get(variable);
+        return this.obtainMapping(variable);
     }
 
     removeMapping(variable: string): void
@@ -110,7 +118,7 @@ export class Mappings{
         this.checkVariable(variable);
         this.checkExistingVariable(variable);
 
-        this._mappings.set(variable, null);
+        this.setIndividual(variable, null);
     }
 
     removeIndividual(individual: Individual): void
@@ -121,9 +129,9 @@ export class Mappings{
 
         for (let item of this._mappings)
         {
-            if (item[1].equals(individual))
+            if (individual.equals(item.Individual))
             {
-                this._mappings.set(item[0], null);
+                item.Individual = null;
                 break;
             }
         }
@@ -134,16 +142,23 @@ export class Mappings{
         this.checkVariable(variable);
         this.checkExistingVariable(variable);
 
-        this._mappings.delete(variable);
+        this._mappings = this._mappings.filter(m => m.Variable !== variable);
     }
 
     copy(): Mappings{
         let copy = new Mappings();
-        for(let entry of this._mappings.entries()){
-            copy._mappings.set(entry[0], entry[1]);
+        for(let item of this._mappings){
+            copy._mappings.push({
+                Variable: item.Variable,
+                Individual: item.Individual
+            });
         }
 
         return copy;
+    }
+
+    private existVariable(variable: string): boolean{
+        return this._mappings.some(m => m.Variable === variable);
     }
 
     private checkVariable(variable: string): void
@@ -154,7 +169,7 @@ export class Mappings{
 
     private checkExistingVariable(variable: string): void
     {
-        if (!this._mappings.has(variable)) 
+        if (!this.existVariable(variable)) 
             throw new Error("Variable doesn't exist");
     }
 
@@ -162,5 +177,23 @@ export class Mappings{
     {
         if (individual == null)
             throw new Error("Individual cannot be null");
+    }
+
+    private setIndividual(variable: string, individual: Individual): void{
+        for(let item of this._mappings){
+            if(item.Variable === variable){
+                item.Individual = individual;
+            }
+        }
+    }
+
+    private obtainMapping(variable: string): Individual{
+        for(let item of this._mappings){
+            if(item.Variable === variable){
+                return item.Individual;
+            }
+        }
+
+        return null;
     }
 }
