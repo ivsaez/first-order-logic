@@ -8,7 +8,7 @@ export class Mappings{
     }
 
     get variables(): string[]{
-        return [...this._mappings.keys()];
+        return Array.from(this._mappings.keys());
     }
 
     get hasAllVariablesMapped(): boolean{

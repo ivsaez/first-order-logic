@@ -173,11 +173,11 @@ export class ModusPonensResult{
     }
 
     get added(): Sentence[]{
-        return [...this._added.values()];
+        return Array.from(this._added.values());
     }
 
     get removed(): Sentence[]{
-        return [...this._removed.values()];
+        return Array.from(this._removed.values());
     }
 
     get count(): number{
