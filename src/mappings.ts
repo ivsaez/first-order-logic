@@ -12,7 +12,7 @@ export class Mappings{
     }
 
     get hasAllVariablesMapped(): boolean{
-        for(let value of this._mappings.values()){
+        for(let value of Array.from(this._mappings.values())){
             if(value == null)
                 return false; 
         }
@@ -56,7 +56,7 @@ export class Mappings{
         this.checkIndividual(individual);
         
         let included: boolean = false;
-        for (let item of this._mappings.keys())
+        for (let item of this.variables)
         {
             if (this._mappings.get(item) == null)
             {
