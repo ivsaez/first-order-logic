@@ -205,7 +205,7 @@ abstract class FormulableBinaryOperation implements IFormulableNode
         let variablesSet = new Set<string>([ 
             ...this._operand.variables, 
             ...this._secondOperand.variables ]);
-        return [ ...variablesSet ];    
+        return Array.from(variablesSet);
     }
 
     formulate(mappings: Mappings): IEvaluable {
