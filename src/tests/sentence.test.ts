@@ -123,6 +123,24 @@ describe("Sentence should", () => {
     expect(sentence.equals(sentenceOne)).toBe(false);
     expect(sentence.equals(sentenceTwo)).toBe(false);
     expect(sentenceTwo.equals(sentenceOne)).toBe(false);
+
+    let sentenceTwoReflexive = new Sentence(
+        new Function("C", Cardinality.Two, "x", "y", true),
+        new Individual("First"),
+        new Individual("Second")
+    );
+
+    expect(sentenceTwoReflexive.equals(new Sentence(
+        new Function("C", Cardinality.Two, "x", "y", true),
+        new Individual("First"),
+        new Individual("Second")
+    ))).toBe(true);
+
+    expect(sentenceTwoReflexive.equals(new Sentence(
+        new Function("C", Cardinality.Two, "x", "y", true),
+        new Individual("Second"),
+        new Individual("First")
+    ))).toBe(true);
   });
 
   it("perform a strict build", () => {

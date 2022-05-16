@@ -136,4 +136,12 @@ describe("TruthTable should", () => {
     expect(anotherTable.exists(Sentence.build("A", "First", "Second"))).toBe(true);
     expect(anotherTable.exists(Sentence.build("B", "Third", "Fourth"))).toBe(true);
   });
+
+  it("detect reflexive sentences as equals", () => {
+    let table = TruthTable.empty
+      .with(Sentence.build("A", "First", "Second", true));
+    
+    expect(table.exists(Sentence.build("A", "First", "Second", true))).toBe(true);
+    expect(table.exists(Sentence.build("A", "Second", "First", true))).toBe(true);
+  });
 });

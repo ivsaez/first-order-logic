@@ -265,7 +265,13 @@ export class Sentence implements IStringable, IEvaluable{
                 return `${this._function.name}[${this._first.toString()}]`;
 
             case Cardinality.Two:
-                return `${this._function.name}[${this._first.toString()},${this._second.toString()}]`;
+                if(this._function.isReflexive){
+                    let orderedIndividuals = [this._first.toString(), this._second.toString()].sort();
+                    return `${this._function.name}[${orderedIndividuals[0]},${orderedIndividuals[1]}]`;
+                }
+                else{
+                    return `${this._function.name}[${this._first.toString()},${this._second.toString()}]`;
+                }
 
             default:
                 return this._function.toString();
