@@ -1,4 +1,4 @@
-import { Sentence } from "../basis";
+import { Cardinality, Function, Sentence } from "../basis";
 import { Container, TruthTable } from "../containers";
 import { IStringable } from "../interfaces";
 
@@ -143,5 +143,25 @@ describe("TruthTable should", () => {
     
     expect(table.exists(Sentence.build("A", "First", "Second", true))).toBe(true);
     expect(table.exists(Sentence.build("A", "Second", "First", true))).toBe(true);
+  });
+
+  it("remove sentences that have a particular function", () => {
+    let table = TruthTable.empty
+      .with(Sentence.build("A", "First", "Second", true))
+      .with(Sentence.build("A", "Third", "Fourth", true))
+      .with(Sentence.build("B", "First", "Second", true))
+      .with(Sentence.build("D"))
+      .with(Sentence.build("A", "Fifth", "Sixth"));
+
+    const deletedElements = table.removeFunction(new Function("A", Cardinality.Two, "x", "y", true));
+    
+    expect(deletedElements).toBe(2);
+
+    expect(table.exists(Sentence.build("D"))).toBe(true);
+    expect(table.exists(Sentence.build("B", "First", "Second", true))).toBe(true);
+    expect(table.exists(Sentence.build("A", "Fifth", "Sixth"))).toBe(true);
+
+    expect(table.exists(Sentence.build("A", "First", "Second", true))).toBe(false);
+    expect(table.exists(Sentence.build("A", "Third", "Fourth", true))).toBe(false);
   });
 });

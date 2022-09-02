@@ -94,4 +94,20 @@ export class TruthTable extends Container<Sentence>{
 
         return copy;
     }
+
+    removeFunction(func: Function): number {
+        let index = 0;
+        let removedElements = 0;
+        while(index < this.elements.length){
+            if(func.equals(this.elements[index].function)){
+                this.remove(this.elements[index]);
+                removedElements++;
+            }
+            else{
+                index++;
+            }
+        }
+
+        return removedElements;
+    }
 }
