@@ -145,6 +145,19 @@ describe("TruthTable should", () => {
     expect(table.exists(Sentence.build("A", "Second", "First", true))).toBe(true);
   });
 
+  it("check if a sentence with the given function exists", () => {
+    let table = TruthTable.empty
+      .with(Sentence.build("A", "First", "Second", true))
+      .with(Sentence.build("A", "Third", "Fourth", true))
+      .with(Sentence.build("B", "First", "Second", true))
+      .with(Sentence.build("D"));
+    
+    expect(table.existsFunction(new Function("A", Cardinality.Two, "x", "y", true))).toBe(true);
+    expect(table.existsFunction(new Function("A", Cardinality.Two, "x", "y", false))).toBe(false);
+    expect(table.existsFunction(new Function("D", Cardinality.None))).toBe(true);
+    expect(table.existsFunction(new Function("B", Cardinality.None))).toBe(false);
+  });
+
   it("remove sentences that have a particular function", () => {
     let table = TruthTable.empty
       .with(Sentence.build("A", "First", "Second", true))

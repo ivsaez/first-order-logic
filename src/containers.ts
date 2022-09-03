@@ -95,6 +95,10 @@ export class TruthTable extends Container<Sentence>{
         return copy;
     }
 
+    existsFunction(func: Function): boolean {
+        return this.elements.some(sentence => sentence.function.equals(func));
+    }
+
     removeFunction(func: Function): number {
         let index = 0;
         let removedElements = 0;
